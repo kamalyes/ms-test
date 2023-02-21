@@ -18,3 +18,4 @@ pypinyin
 Faker
 dicttoxml
 lxml~=4.9.2
+cryptography~=39.0.1

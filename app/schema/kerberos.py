@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 # !/usr/bin/env python 3.9.11
 """
-@File    :  user.py
+@File    :  kerberos.py
 @Time    :  2022/7/7 15:21 PM
 @Author  :  YuYanQing
 @Version :  1.0
@@ -30,4 +30,5 @@ class KerberosSchema(EnvironmentSchema):
   userno: Optional[str] = Body("", title="userno")
   mobile: Optional[str] = Body("", title="mobile")
   name: Optional[str] = Body("", title="name")
-  exp: Optional[int] = Body(72, title="exp")
+  exp: Optional[int] = Body(72, title="exp 默认 72小时")
+  ttl: Optional[int] = Body(600, title="ttl 默认 10分钟")
