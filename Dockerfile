@@ -14,12 +14,10 @@ RUN python -m venv ${WORKSPACES}/venv &&  \
   apt update -y &&  \
   apt upgrade -y &&  \
   apt install -y wget &&  \
-  apt install -y vi &&  \
   apt install -y vim &&  \
   apt install -y curl &&  \
-  apt install -y tzdata && \
-  apt install -y libssl-dev
-
+  apt install -y tzdata
+  
 COPY . .
 RUN ln -snf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE >/etc/timezone &&  \
   chmod -R 755 ${WORKSPACES}
