@@ -18,7 +18,7 @@ RUN python -m venv ${WORKSPACES}/venv &&  \
   apt install -y vim &&  \
   apt install -y curl &&  \
   apt install -y tzdata && \
-  apt-get install libssl-dev
+  apt install -y libssl-dev
 
 COPY . .
 RUN ln -snf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE >/etc/timezone &&  \
