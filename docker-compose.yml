@@ -9,8 +9,6 @@ services:
       - 7777:7777
     environment:
       - TZ=Asia/Shanghai
-    volumes:
-      - /opt/ms/conf:/opt/ms/conf
-      - /opt/ms/logs:/opt/ms/logs
-    networks:
-      - ms-network
+    # volumes:
+    #   - /opt/ms/conf:/opt/ms/conf
+    #   - /opt/ms/logs:/opt/ms/logs

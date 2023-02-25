@@ -20,6 +20,7 @@ RUN python -m venv ${WORKSPACES}/venv &&  \
   
 COPY . .
 RUN ln -snf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE >/etc/timezone &&  \
+  mkdir -p ${WORKSPACES}/logs && \
   chmod -R 755 ${WORKSPACES}
 
 EXPOSE 7777
