@@ -27,7 +27,7 @@ class EnvironmentSchema(BaseModel):
   env: Optional[int] = Body(0, title="env")
 
 class KerberosSchema(EnvironmentSchema):
-  user_no: Optional[str] = Body("", title="user_no")
-  mobile: Optional[int] = Body(0, title="mobile")
+  userno: Optional[str] = Body("", title="userno")
+  mobile: Optional[str] = Body("", title="mobile")
   name: Optional[str] = Body("", title="name")
   exp: Optional[int] = Body(72, title="exp")

@@ -5,23 +5,24 @@ ENV PYTHONUNBUFFERED=1
 ENV MS_ENV=production
 RUN mkdir -p ${WORKSPACES}
 WORKDIR ${WORKSPACES}
+ENV PYPI_SIMPLE_URL  https://pypi.mirrors.ustc.edu.cn/simple
+
 COPY ./requirements.txt ./requirements.txt
-RUN python -m venv ${WORKSPACES}/venv &&
-  ${WORKSPACES}/venv/bin/python -m pip install --upgrade pip &&
-  ${WORKSPACES}/venv/bin/python -m pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ &&
-  apt update -y &&
-  apt upgrade -y &&
-  apt install -y wget &&
-  apt install -y vim &&
-  apt install -y curl &&
-  apt install -y tzdata &&
-  wget https://github.com/vishnubob/wait-for-it/raw/master/wait-for-it.sh
+RUN python -m venv ${WORKSPACES}/venv &&  \
+  ${WORKSPACES}/venv/bin/python -m pip install --upgrade pip  -i ${PYPI_SIMPLE_URL}  &&  \
+  ${WORKSPACES}/venv/bin/python -m pip install -r requirements.txt -i ${PYPI_SIMPLE_URL} &&  \
+  apt update -y &&  \
+  apt upgrade -y &&  \
+  apt install -y wget &&  \
+  apt install -y vim &&  \
+  apt install -y curl &&  \
+  apt install -y tzdata && \
+  apt-get install libssl-dev
 
 COPY . .
-RUN rm ${WORKSPACES}/install
-RUN ln -snf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE >/etc/timezone &&
-  chmod 755 ${WORKSPACES}
+RUN ln -snf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE >/etc/timezone &&  \
+  chmod -R 755 ${WORKSPACES}
 
 EXPOSE 7777
 
-CMD ["/opt/Ms/venv/bin/supervisord", "-c", "/opt/Ms/conf/supervisor.conf"]
+CMD ["/opt/ms/venv/bin/supervisord", "-c", "/opt/ms/conf/supervisor.conf"]

@@ -1,0 +1,18 @@
+version: "3"
+services:
+  ms:
+    image: kamalyes/ms-testing:latest
+    container_name: ms
+    restart: always
+    privileged: true 
+    ports:
+      - 7777:7777
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /opt/ms/conf:/opt/ms/conf
+      - /opt/ms/logs:/opt/ms/logs
+    networks:
+      ms-network:
+        aliases:
+          - ms_server
